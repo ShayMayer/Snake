@@ -16,7 +16,7 @@ public class Snake {
     private SnakeHead head;
     private Direction curDirection;
 
-    public Snake(int rows, int cols) {
+    public Snake(int rows, int cols, Direction defaultDirection) {
         this.body = new ArrayList<Piece>();
 
         this.rows = rows;
@@ -27,7 +27,7 @@ public class Snake {
         for(int i = 1; i < INITIAL_BODY_SIZE; i++)
             this.body.add(new Piece(this.body.get(i - 1).getX(), this.body.get(i - 1).getY() + 1, Color.GREEN));
 
-        this.curDirection = Direction.UP;
+        this.curDirection = defaultDirection;
     }
 
     public void move(Direction direction, ArrayList<Food> food) {

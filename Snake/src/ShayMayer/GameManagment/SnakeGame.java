@@ -1,15 +1,19 @@
 package ShayMayer.GameManagment;
 
-import ShayMayer.GameManagment.GameFrames.SnakeInGameFrame;
+import ShayMayer.GameManagment.GameFrames.SnakeGameFrame;
 
 import javax.swing.*;
 
 public class SnakeGame extends JFrame {
-    private static final long FRAME_DELAY = 120;
     private static final int SCREEN_WIDTH = 1100;
     private static final int SCREEN_HEIGHT = 734;
 
-    SnakeInGameFrame snakeInGameFrame;
+    private static final int ROWS = 15;
+    private static final int COLS = 15;
+
+    private static final long FRAME_DELAY = 120;
+
+    SnakeGameFrame snakeGameFrame;
 
     public SnakeGame() {
         this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -17,15 +21,15 @@ public class SnakeGame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
 
-        this.snakeInGameFrame = new SnakeInGameFrame(SCREEN_WIDTH, SCREEN_HEIGHT, FRAME_DELAY);
-        this.snakeInGameFrame.addListeners(this);
+        this.snakeGameFrame = new SnakeGameFrame(SCREEN_WIDTH, SCREEN_HEIGHT, ROWS, COLS, FRAME_DELAY);
+        this.snakeGameFrame.addListeners(this);
 
-        this.add(this.snakeInGameFrame.getRenderer());
+        this.add(this.snakeGameFrame.getRenderer());
 
         this.setVisible(true);
     }
 
     public void update() {
-        this.snakeInGameFrame.update();
+        this.snakeGameFrame.update();
     }
 }

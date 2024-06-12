@@ -8,9 +8,9 @@ public class InGameInputHandler extends InputHandler {
     private Direction nextDirection;
     private Direction snakeCurDirection;
 
-    public InGameInputHandler() {
-        this.nextDirection = Direction.UP;
-        this.snakeCurDirection = Direction.UP;
+    public InGameInputHandler(Direction defaultDirection) {
+        this.nextDirection = defaultDirection;
+        this.snakeCurDirection = defaultDirection;
     }
 
     public void setSnakeCurDirection(Direction snakeCurDirection) {

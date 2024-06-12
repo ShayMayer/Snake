@@ -1,15 +1,18 @@
 package ShayMayer.GameManagment.GameFrames;
 
 import ShayMayer.Logic.SnakeBoardLogic;
+import ShayMayer.LogicUtils.Direction;
 import ShayMayer.Renderers.SnakeBoardRenderer;
 import ShayMayer.GameManagment.SnakeGame;
 import ShayMayer.Input.GameOverInputHandler;
 import ShayMayer.Input.InGameInputHandler;
 import ShayMayer.LogicUtils.StopWatch;
 
-public class SnakeInGameFrame extends GameFrame {
-    private static final int COLS = 15;
-    private static final int ROWS = 15;
+public class SnakeGameFrame {
+    private static final Direction defaultDirection = Direction.UP;
+
+    private int width, height;
+    private int rows, cols;
 
     private SnakeBoardLogic logic;
     private SnakeBoardRenderer renderer;
@@ -21,14 +24,17 @@ public class SnakeInGameFrame extends GameFrame {
 
     private long frameDelay;
 
-    public SnakeInGameFrame(int width, int height, long frameDelay) {
-        super(width, height);
+    public SnakeGameFrame(int width, int height, int rows, int cols, long frameDelay) {
+        this.width = width;
+        this.height = height;
+        this.rows = rows;
+        this.cols = cols;
 
-        this.renderer = new SnakeBoardRenderer((int)(this.width * 0.1), (int)(this.height * 0.1), (int)(this.width * 0.8), (int)(this.height * 0.8), ROWS, COLS);
+        this.renderer = new SnakeBoardRenderer((int)(this.width * 0.1), (int)(this.height * 0.1), (int)(this.width * 0.8), (int)(this.height * 0.8), this.rows, this.cols);
 
         this.initializeListeners();
 
-        this.logic = new SnakeBoardLogic(ROWS, COLS, this.inGameInputHandler);
+        this.logic = new SnakeBoardLogic(rows, cols, this.inGameInputHandler, defaultDirection);
         this.renderer.setParts(this.logic.getSnake(), this.logic.getFood(), this.logic.getScore());
 
         this.frameDelay = frameDelay;
@@ -37,7 +43,7 @@ public class SnakeInGameFrame extends GameFrame {
     }
 
     public void initializeListeners() {
-        this.inGameInputHandler = new InGameInputHandler();
+        this.inGameInputHandler = new InGameInputHandler(defaultDirection);
         this.gameOverInputHandler = new GameOverInputHandler();
     }
 
@@ -68,7 +74,7 @@ public class SnakeInGameFrame extends GameFrame {
 
         if (this.logic.isGameOver())
             if (this.gameOverInputHandler.toRestart()) {
-                this.logic = new SnakeBoardLogic(ROWS, COLS, this.inGameInputHandler);
+                this.logic = new SnakeBoardLogic(this.rows, this.cols, this.inGameInputHandler, defaultDirection);
                 this.renderer.setParts(this.logic.getSnake(), this.logic.getFood(), this.logic.getScore());
                 this.gameOverInputHandler.reset();
             }

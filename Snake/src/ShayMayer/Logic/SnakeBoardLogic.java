@@ -4,6 +4,7 @@ import ShayMayer.Entities.Food;
 import ShayMayer.Entities.Piece;
 import ShayMayer.Entities.Snake.Snake;
 import ShayMayer.Input.InGameInputHandler;
+import ShayMayer.LogicUtils.Direction;
 import ShayMayer.LogicUtils.Score;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class SnakeBoardLogic {
 
     private int rows, cols;
 
-    public SnakeBoardLogic(int rows, int cols, InGameInputHandler inputHandler) {
+    public SnakeBoardLogic(int rows, int cols, InGameInputHandler inputHandler, Direction defaultDirection) {
         this.rows = rows;
         this.cols = cols;
 
@@ -29,7 +30,7 @@ public class SnakeBoardLogic {
 
         this.inputHandler = inputHandler;
 
-        this.snake = new Snake(this.rows, this.cols);
+        this.snake = new Snake(this.rows, this.cols, defaultDirection);
 
         this.food = new ArrayList<Food>();
         this.generateFood();
