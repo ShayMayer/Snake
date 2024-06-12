@@ -18,8 +18,6 @@ public class SnakeBoardLogic {
 
     private InGameInputHandler inputHandler;
 
-    //private boolean gameOver = false;
-
     private int rows, cols;
 
     public SnakeBoardLogic(int rows, int cols, InGameInputHandler inputHandler, Direction defaultDirection) {
@@ -38,7 +36,7 @@ public class SnakeBoardLogic {
     }
 
     private void generateFood() {
-        if(this.snake.size() == this.cols * this.rows - 1)
+        if(this.snake.size() + this.food.size() == this.cols * this.rows)
             return;
 
         Random rnd = new Random();
@@ -46,8 +44,15 @@ public class SnakeBoardLogic {
         do {
             foodX = rnd.nextInt(this.cols);
             foodY = rnd.nextInt(this.rows);
-        } while (this.snake.inSnake(foodX, foodY) || (this.food.size() > 0 && this.food.get(0).equals(foodX, foodY)));
+        } while (this.snake.inSnake(foodX, foodY) || foodContains(foodX, foodY));
         this.food.add(new Food(foodX, foodY));
+    }
+
+    private boolean foodContains(int x, int y) {
+        for(Food f : this.food)
+            if(f.equals(x, y))
+                return true;
+        return false;
     }
 
     public void update() {

@@ -11,7 +11,7 @@ public class SnakeGame extends JFrame {
     private static final int ROWS = 15;
     private static final int COLS = 15;
 
-    private static final long FRAME_DELAY = 120;
+    private static final long FRAME_DELAY = 125;
 
     SnakeGameFrame snakeGameFrame;
 

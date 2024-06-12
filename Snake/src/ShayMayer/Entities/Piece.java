@@ -3,7 +3,7 @@ package ShayMayer.Entities;
 import java.awt.*;
 
 public class Piece {
-    private int x, y;
+    protected int x, y;
     private Color color;
 
     public Piece(int x, int y, Color color) {
