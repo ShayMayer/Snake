@@ -1,18 +1,20 @@
 package ShayMayer.GameManagment;
 
-import ShayMayer.Entities.Food;
 import ShayMayer.Entities.Piece;
 import ShayMayer.Entities.Snake;
 import ShayMayer.Input.InGameInputHandler;
 import ShayMayer.LogicUtils.Direction;
 import ShayMayer.LogicUtils.Score;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class SnakeBoardLogic {
+    private static final Color FOOD_COLOR = Color.RED;
+
     private Snake snake;
-    private ArrayList<Food> food;
+    private ArrayList<Piece> food;
 
     private Score score;
 
@@ -30,7 +32,7 @@ public class SnakeBoardLogic {
 
         this.snake = new Snake(this.rows, this.cols, defaultDirection);
 
-        this.food = new ArrayList<Food>();
+        this.food = new ArrayList<Piece>();
         this.generateFood();
         this.generateFood();
     }
@@ -44,15 +46,8 @@ public class SnakeBoardLogic {
         do {
             foodX = rnd.nextInt(this.cols);
             foodY = rnd.nextInt(this.rows);
-        } while (this.snake.inSnake(foodX, foodY) || foodContains(foodX, foodY));
-        this.food.add(new Food(foodX, foodY));
-    }
-
-    private boolean foodContains(int x, int y) {
-        for(Food f : this.food)
-            if(f.equals(x, y))
-                return true;
-        return false;
+        } while (this.snake.inSnake(foodX, foodY) || Piece.listContains(this.food, foodX, foodY));
+        this.food.add(new Piece(foodX, foodY, FOOD_COLOR));
     }
 
     public void update() {
@@ -68,7 +63,7 @@ public class SnakeBoardLogic {
     }
 
     private void handleFood() {
-        Food toRemove = null;
+        Piece toRemove = null;
         for(int i = 0; i < food.size(); i++)
             if(this.snake.inSnake(food.get(i)))
                 toRemove = food.get(i);
@@ -83,6 +78,6 @@ public class SnakeBoardLogic {
     public boolean isGameOver() { return ((this.snake.size() == this.cols * this.rows) || this.snake.selfFed()); }
 
     public ArrayList<Piece> getSnake() { return this.snake.getSnake(); }
-    public ArrayList<Food> getFood() { return this.food; }
+    public ArrayList<Piece> getFood() { return this.food; }
     public Score getScore() { return this.score; }
 }

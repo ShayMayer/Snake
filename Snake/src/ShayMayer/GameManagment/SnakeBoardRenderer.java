@@ -1,6 +1,5 @@
 package ShayMayer.GameManagment;
 
-import ShayMayer.Entities.Food;
 import ShayMayer.Entities.Piece;
 import ShayMayer.LogicUtils.Score;
 
@@ -12,7 +11,7 @@ public class SnakeBoardRenderer extends JPanel {
     private static final int GRAPHICS_ARC_SIZE = 24;
 
     private ArrayList<Piece> snake;
-    private ArrayList<Food> food;
+    private ArrayList<Piece> food;
     private Score score;
 
     private int originX, originY;
@@ -28,7 +27,7 @@ public class SnakeBoardRenderer extends JPanel {
         this.tileHeight = height / this.rows;
     }
 
-    public void setParts(ArrayList<Piece> snake, ArrayList<Food> food, Score score) {
+    public void setParts(ArrayList<Piece> snake, ArrayList<Piece> food, Score score) {
         this.snake = snake;
         this.food = food;
         this.score = score;
@@ -44,8 +43,8 @@ public class SnakeBoardRenderer extends JPanel {
 
     private void drawFood(Graphics g) {
         g.setColor(this.food.get(0).getColor());
-        for(Food f : this.food)
-            g.fillRoundRect(this.originX + f.getX() * this.tileWidth, this.originY + f.getY() * this.tileHeight, this.tileWidth, this.tileHeight, GRAPHICS_ARC_SIZE, GRAPHICS_ARC_SIZE);
+        for(Piece p : this.food)
+            g.fillRoundRect(this.originX + p.getX() * this.tileWidth, this.originY + p.getY() * this.tileHeight, this.tileWidth, this.tileHeight, GRAPHICS_ARC_SIZE, GRAPHICS_ARC_SIZE);
     }
 
     public void drawLines(Graphics g) {

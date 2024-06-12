@@ -1,6 +1,7 @@
 package ShayMayer.Entities;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Piece {
     protected int x, y;
@@ -43,6 +44,13 @@ public class Piece {
 
     public boolean equals(int x, int y) {
         return (this.x == x && this.y == y);
+    }
+
+    public static boolean listContains(ArrayList<Piece> pieces, int x, int y) {
+        for(Piece p : pieces)
+            if(p.equals(x, y))
+                return true;
+        return false;
     }
 
     @Override

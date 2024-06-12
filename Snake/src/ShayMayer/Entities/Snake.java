@@ -30,7 +30,7 @@ public class Snake {
         this.curDirection = defaultDirection;
     }
 
-    public void move(Direction direction, ArrayList<Food> food) {
+    public void move(Direction direction, ArrayList<Piece> food) {
         if(Direction.oppositeDirection(this.curDirection, direction))
             direction = curDirection;
 
@@ -48,8 +48,8 @@ public class Snake {
         else if(newHeadY == -1) newHeadY = rows - 1;
         else if(newHeadY == rows) newHeadY = 0;
 
-        for(Food f : food)
-            if(f.equals(newHeadX, newHeadY)){
+        for(Piece p : food)
+            if(p.equals(newHeadX, newHeadY)){
                 this.head.setColor(this.body.get(this.body.size() - 1).getColor());
                 this.head = new Piece(newHeadX, newHeadY, HEAD_COLOR);
                 this.body.add(0, this.head);
