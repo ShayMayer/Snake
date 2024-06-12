@@ -1,4 +1,4 @@
-package ShayMayer.Logic;
+package ShayMayer.GameManagment;
 
 import ShayMayer.Entities.Food;
 import ShayMayer.Entities.Piece;

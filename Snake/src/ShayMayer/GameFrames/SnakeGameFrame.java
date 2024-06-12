@@ -1,8 +1,8 @@
-package ShayMayer.GameManagment.GameFrames;
+package ShayMayer.GameFrames;
 
-import ShayMayer.Logic.SnakeBoardLogic;
+import ShayMayer.GameManagment.SnakeBoardLogic;
 import ShayMayer.LogicUtils.Direction;
-import ShayMayer.Renderers.SnakeBoardRenderer;
+import ShayMayer.GameManagment.SnakeBoardRenderer;
 import ShayMayer.GameManagment.SnakeGame;
 import ShayMayer.Input.GameOverInputHandler;
 import ShayMayer.Input.InGameInputHandler;

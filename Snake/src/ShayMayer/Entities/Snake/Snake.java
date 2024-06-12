@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Snake {
-    private static int INITIAL_BODY_SIZE = 3;
+    private static final int INITIAL_BODY_SIZE = 3;
 
     private int rows, cols;
 

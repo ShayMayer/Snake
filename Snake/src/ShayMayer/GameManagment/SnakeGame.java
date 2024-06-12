@@ -1,6 +1,6 @@
 package ShayMayer.GameManagment;
 
-import ShayMayer.GameManagment.GameFrames.SnakeGameFrame;
+import ShayMayer.GameFrames.SnakeGameFrame;
 
 import javax.swing.*;
 
