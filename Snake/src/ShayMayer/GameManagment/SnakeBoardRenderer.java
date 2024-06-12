@@ -34,11 +34,14 @@ public class SnakeBoardRenderer extends JPanel {
     }
 
     private void drawSnake(Graphics g) {
-        for(int i = this.snake.size() - 1; i >= 0; i--) {
-            ShayMayer.Entities.Piece p = this.snake.get(i);
-            g.setColor(p.getColor());
+        g.setColor(this.snake.get(this.snake.size() - 1).getColor());
+        for(int i = this.snake.size() - 1; i > 0; i--) {
+            Piece p = this.snake.get(i);
             g.fillRoundRect(this.originX + p.getX() * this.tileWidth, this.originY + p.getY() * this.tileHeight, this.tileWidth, this.tileHeight, GRAPHICS_ARC_SIZE, GRAPHICS_ARC_SIZE);
         }
+        Piece head = this.snake.get(0);
+        g.setColor(head.getColor());
+        g.fillRoundRect(this.originX + head.getX() * this.tileWidth, this.originY + head.getY() * this.tileHeight, this.tileWidth, this.tileHeight, GRAPHICS_ARC_SIZE, GRAPHICS_ARC_SIZE);
     }
 
     private void drawFood(Graphics g) {
