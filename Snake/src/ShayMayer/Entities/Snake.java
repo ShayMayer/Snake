@@ -1,7 +1,5 @@
-package ShayMayer.Entities.Snake;
+package ShayMayer.Entities;
 
-import ShayMayer.Entities.Food;
-import ShayMayer.Entities.Piece;
 import ShayMayer.LogicUtils.Direction;
 
 import java.awt.*;
@@ -9,11 +7,13 @@ import java.util.ArrayList;
 
 public class Snake {
     private static final int INITIAL_BODY_SIZE = 3;
+    private static final Color BODY_COLOR = Color.GREEN;
+    private static final Color HEAD_COLOR = Color.BLUE;
 
     private int rows, cols;
 
     private ArrayList<Piece> body;
-    private SnakeHead head;
+    private Piece head;
     private Direction curDirection;
 
     public Snake(int rows, int cols, Direction defaultDirection) {
@@ -21,11 +21,11 @@ public class Snake {
 
         this.rows = rows;
         this.cols = cols;
-        this.head = new SnakeHead(this.cols / 2, this.rows / 2);
+        this.head = new Piece(this.cols / 2, this.rows / 2, HEAD_COLOR);
 
         this.body.add(this.head);
         for(int i = 1; i < INITIAL_BODY_SIZE; i++)
-            this.body.add(new Piece(this.body.get(i - 1).getX(), this.body.get(i - 1).getY() + 1, Color.GREEN));
+            this.body.add(new Piece(this.body.get(i - 1).getX(), this.body.get(i - 1).getY() + 1, BODY_COLOR));
 
         this.curDirection = defaultDirection;
     }
@@ -51,7 +51,7 @@ public class Snake {
         for(Food f : food)
             if(f.equals(newHeadX, newHeadY)){
                 this.head.setColor(this.body.get(this.body.size() - 1).getColor());
-                this.head = new SnakeHead(newHeadX, newHeadY);
+                this.head = new Piece(newHeadX, newHeadY, HEAD_COLOR);
                 this.body.add(0, this.head);
                 return;
             }
@@ -77,8 +77,8 @@ public class Snake {
         return false;
     }
 
-    public boolean inSnake(ShayMayer.Entities.Piece... pieces) {
-        for (ShayMayer.Entities.Piece p : pieces)
+    public boolean inSnake(Piece... pieces) {
+        for (Piece p : pieces)
             if (this.inSnake(p.getX(), p.getY()))
                 return true;
         return false;

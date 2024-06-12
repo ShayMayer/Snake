@@ -2,7 +2,7 @@ package ShayMayer.GameManagment;
 
 import ShayMayer.Entities.Food;
 import ShayMayer.Entities.Piece;
-import ShayMayer.Entities.Snake.Snake;
+import ShayMayer.Entities.Snake;
 import ShayMayer.Input.InGameInputHandler;
 import ShayMayer.LogicUtils.Direction;
 import ShayMayer.LogicUtils.Score;
