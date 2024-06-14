@@ -2,7 +2,7 @@ package ShayMayer.LogicUtils;
 
 
 public class Score {
-    private static final int SCORE_FOR_EATING = 10;
+    private static final int SCORE_TO_ADD = 10;
 
     private int score;
 
@@ -11,7 +11,7 @@ public class Score {
     }
 
     public void update() {
-        this.score += SCORE_FOR_EATING;
+        this.score += SCORE_TO_ADD;
     }
 
     public int getScore() { return this.score; }

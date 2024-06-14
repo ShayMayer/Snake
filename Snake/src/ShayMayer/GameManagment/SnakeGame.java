@@ -13,7 +13,7 @@ public class SnakeGame extends JFrame {
 
     private static final long FRAME_DELAY = 120;
 
-    SnakeGameFrame snakeGameFrame;
+    private SnakeGameFrame snakeGameFrame;
 
     public SnakeGame() {
         this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);

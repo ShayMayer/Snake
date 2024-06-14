@@ -2,13 +2,10 @@ package ShayMayer.Entities;
 
 import ShayMayer.LogicUtils.Direction;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Snake {
     private static final int INITIAL_BODY_SIZE = 3;
-    private static final Color BODY_COLOR = Color.GREEN;
-    private static final Color HEAD_COLOR = Color.BLUE;
 
     private int rows, cols;
 
@@ -21,11 +18,11 @@ public class Snake {
 
         this.rows = rows;
         this.cols = cols;
-        this.head = new Piece(this.cols / 2, this.rows / 2, HEAD_COLOR);
+        this.head = new Piece(this.cols / 2, this.rows / 2);
 
         this.body.add(this.head);
         for(int i = 1; i < INITIAL_BODY_SIZE; i++)
-            this.body.add(new Piece(this.body.get(i - 1).getX(), this.body.get(i - 1).getY() + 1, BODY_COLOR));
+            this.body.add(new Piece(this.body.get(i - 1).getX(), this.body.get(i - 1).getY() + 1));
 
         this.curDirection = defaultDirection;
     }
@@ -50,8 +47,7 @@ public class Snake {
 
         for(Piece p : food)
             if(p.equals(newHeadX, newHeadY)){
-                this.head.setColor(this.body.get(this.body.size() - 1).getColor());
-                this.head = new Piece(newHeadX, newHeadY, HEAD_COLOR);
+                this.head = new Piece(newHeadX, newHeadY);
                 this.body.add(0, this.head);
                 return;
             }

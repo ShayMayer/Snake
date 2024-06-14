@@ -10,6 +10,10 @@ import java.util.ArrayList;
 public class SnakeBoardRenderer extends JPanel {
     private static final int GRAPHICS_ARC_SIZE = 24;
 
+    private static final Color BODY_COLOR = Color.GREEN;
+    private static final Color HEAD_COLOR = Color.BLUE;
+    private static final Color FOOD_COLOR = Color.RED;
+
     private ArrayList<Piece> snake;
     private ArrayList<Piece> food;
     private Score score;
@@ -33,24 +37,25 @@ public class SnakeBoardRenderer extends JPanel {
         this.score = score;
     }
 
-    private void drawSnake(Graphics g) {
-        g.setColor(this.snake.get(this.snake.size() - 1).getColor());
+    private void paintSnake(Graphics g) {
+        g.setColor(BODY_COLOR);
         for(int i = this.snake.size() - 1; i > 0; i--) {
             Piece p = this.snake.get(i);
             g.fillRoundRect(this.originX + p.getX() * this.tileWidth, this.originY + p.getY() * this.tileHeight, this.tileWidth, this.tileHeight, GRAPHICS_ARC_SIZE, GRAPHICS_ARC_SIZE);
         }
+
+        g.setColor(HEAD_COLOR);
         Piece head = this.snake.get(0);
-        g.setColor(head.getColor());
         g.fillRoundRect(this.originX + head.getX() * this.tileWidth, this.originY + head.getY() * this.tileHeight, this.tileWidth, this.tileHeight, GRAPHICS_ARC_SIZE, GRAPHICS_ARC_SIZE);
     }
 
-    private void drawFood(Graphics g) {
-        g.setColor(this.food.get(0).getColor());
+    private void paintFood(Graphics g) {
+        g.setColor(FOOD_COLOR);
         for(Piece p : this.food)
             g.fillRoundRect(this.originX + p.getX() * this.tileWidth, this.originY + p.getY() * this.tileHeight, this.tileWidth, this.tileHeight, GRAPHICS_ARC_SIZE, GRAPHICS_ARC_SIZE);
     }
 
-    public void drawLines(Graphics g) {
+    public void paintLines(Graphics g) {
         g.setColor(Color.black);
         for(int i = 0; i < this.rows + 1; i++)
             g.drawLine(originX, originY + i * this.tileHeight, originX + cols * tileWidth, originY + i * tileHeight);
@@ -59,7 +64,7 @@ public class SnakeBoardRenderer extends JPanel {
             g.drawLine(originX + i * tileWidth, originY, originX + i * tileWidth, originY + rows * tileHeight);
     }
 
-    public void drawScore(Graphics g) {
+    public void paintScore(Graphics g) {
         g.setFont(new Font("TimesRoman", Font.PLAIN, (int)(tileWidth * 0.8)));
         g.drawString("Score: " + this.score.getScore(), originX, originY - tileHeight / 2);
     }
@@ -70,9 +75,9 @@ public class SnakeBoardRenderer extends JPanel {
 
         if(this.snake == null || this.food == null) return;
 
-        drawSnake(g);
-        drawFood(g);
-        drawLines(g);
-        drawScore(g);
+        paintSnake(g);
+        paintFood(g);
+        paintLines(g);
+        paintScore(g);
     }
 }

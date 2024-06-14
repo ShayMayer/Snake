@@ -1,16 +1,13 @@
 package ShayMayer.Entities;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Piece {
     protected int x, y;
-    private Color color;
 
-    public Piece(int x, int y, Color color) {
+    public Piece(int x, int y) {
         this.x = x;
         this.y = y;
-        this.color = color;
     }
 
     public void set(int x, int y) {
@@ -26,20 +23,12 @@ public class Piece {
         this.y = y;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
     public int getX() {
         return x;
     }
 
     public int getY() {
         return y;
-    }
-
-    public Color getColor() {
-        return color;
     }
 
     public boolean equals(int x, int y) {

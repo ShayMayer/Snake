@@ -6,13 +6,10 @@ import ShayMayer.Input.InGameInputHandler;
 import ShayMayer.LogicUtils.Direction;
 import ShayMayer.LogicUtils.Score;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class SnakeBoardLogic {
-    private static final Color FOOD_COLOR = Color.RED;
-
     private Snake snake;
     private ArrayList<Piece> food;
 
@@ -47,7 +44,7 @@ public class SnakeBoardLogic {
             foodX = rnd.nextInt(this.cols);
             foodY = rnd.nextInt(this.rows);
         } while (this.snake.inSnake(foodX, foodY) || Piece.listContains(this.food, foodX, foodY));
-        this.food.add(new Piece(foodX, foodY, FOOD_COLOR));
+        this.food.add(new Piece(foodX, foodY));
     }
 
     public void update() {
