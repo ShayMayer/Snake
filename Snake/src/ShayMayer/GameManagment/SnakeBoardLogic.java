@@ -43,7 +43,7 @@ public class SnakeBoardLogic {
         do {
             foodX = rnd.nextInt(this.cols);
             foodY = rnd.nextInt(this.rows);
-        } while (this.snake.inSnake(foodX, foodY) || Piece.listContains(this.food, foodX, foodY));
+        } while (this.snake.inSnake(foodX, foodY) || Piece.piecesContain(this.food, foodX, foodY));
         this.food.add(new Piece(foodX, foodY));
     }
 
@@ -61,9 +61,9 @@ public class SnakeBoardLogic {
 
     private void handleFood() {
         Piece toRemove = null;
-        for(int i = 0; i < food.size(); i++)
-            if(this.snake.inSnake(food.get(i)))
-                toRemove = food.get(i);
+        for (Piece piece : food)
+            if (this.snake.inSnake(piece))
+                toRemove = piece;
 
         if(toRemove != null) {
             this.score.update();

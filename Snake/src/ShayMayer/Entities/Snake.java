@@ -28,7 +28,7 @@ public class Snake {
     }
 
     public void move(Direction direction, ArrayList<Piece> food) {
-        if(Direction.oppositeDirection(this.curDirection, direction))
+        if(Direction.isOppositeDirection(this.curDirection, direction))
             direction = curDirection;
 
         int newHeadX = this.head.getX(), newHeadY = this.head.getY();
@@ -67,10 +67,7 @@ public class Snake {
     }
 
     public boolean inSnake(int x, int y) {
-        for(ShayMayer.Entities.Piece p : this.body)
-            if(p.getX() == x && p.getY() == y)
-                return true;
-        return false;
+        return Piece.piecesContain(this.body, x, y);
     }
 
     public boolean inSnake(Piece... pieces) {
@@ -81,10 +78,9 @@ public class Snake {
     }
 
     public boolean selfFed() {
-        for(int i = 0; i < this.body.size(); i++)
-            for(int j = i + 1; j < this.body.size(); j++)
-                if(this.body.get(i).equals(this.body.get(j)))
-                    return true;
+        for (int i = 1; i < this.body.size(); i++)
+            if (this.head.equals(this.body.get(i)))
+                return true;
         return false;
     }
 

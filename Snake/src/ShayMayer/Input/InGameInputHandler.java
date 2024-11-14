@@ -20,7 +20,7 @@ public class InGameInputHandler extends InputHandler {
     public Direction getNextDirection() { return this.nextDirection; }
 
     private boolean validDirection(Direction dir) {
-        return (dir != this.snakeCurDirection && !Direction.oppositeDirection(dir, this.snakeCurDirection));
+        return (dir != this.snakeCurDirection && !Direction.isOppositeDirection(dir, this.snakeCurDirection));
     }
 
     @Override

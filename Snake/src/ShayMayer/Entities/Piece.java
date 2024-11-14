@@ -35,7 +35,7 @@ public class Piece {
         return (this.x == x && this.y == y);
     }
 
-    public static boolean listContains(ArrayList<Piece> pieces, int x, int y) {
+    public static boolean piecesContain(ArrayList<Piece> pieces, int x, int y) {
         for(Piece p : pieces)
             if(p.equals(x, y))
                 return true;
